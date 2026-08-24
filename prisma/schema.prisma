@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  SALES
+  OPERATOR
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role         Role     @default(SALES)
+  refreshToken String?  @map("refresh_token") @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  bookings   Booking[]
+  statusLogs BookingStatusLog[]
+
+  @@map("users")
+}
+
+model Booking {
+  id            Int           @id @default(autoincrement())
+  customerName  String        @map("customer_name")
+  customerPhone String        @map("customer_phone")
+  tourName      String        @map("tour_name")
+  bookingDate   DateTime      @default(now()) @map("booking_date")
+  travelDate    DateTime      @map("travel_date")
+  status        BookingStatus @default(PENDING)
+  notes         String?       @db.Text
+  createdBy     Int           @map("created_by")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  user       User               @relation(fields: [createdBy], references: [id])
+  statusLogs BookingStatusLog[]
+
+  @@map("bookings")
+}
+
+model BookingStatusLog {
+  id        Int            @id @default(autoincrement())
+  bookingId Int            @map("booking_id")
+  oldStatus BookingStatus? @map("old_status")
+  newStatus BookingStatus  @map("new_status")
+  changedBy Int            @map("changed_by")
+  changedAt DateTime       @default(now()) @map("changed_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id])
+  user    User    @relation(fields: [changedBy], references: [id])
+
+  @@map("booking_status_logs")
+}
