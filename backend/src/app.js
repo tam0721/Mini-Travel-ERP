@@ -1,5 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.routes.js";
+import bookingRoutes from "./routes/booking.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 
 const app = express();
@@ -15,6 +17,10 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+
+app.use('/api/bookings', bookingRoutes);
+
+app.use('/api/dashboard', dashboardRoutes);
 
 app.use(errorHandler);
 
