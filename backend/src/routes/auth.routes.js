@@ -3,8 +3,15 @@ import { login, refreshToken, getProfile, logout, createUser } from '../controll
 import { requireAuth, requireAdmin } from '../middlewares/auth.middleware.js';
 import { validate } from '../middlewares/validation.middleware.js';
 import { z } from 'zod';
+import rateLimit from 'express-rate-limit';
 
 const router = express.Router();
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10, // Limit each IP to 10 login requests per `window` (here, per 15 minutes)
+    message: { status: 'error', message: 'Quá nhiều lần thử đăng nhập, vui lòng thử lại sau 15 phút' }
+});
 
 const loginSchema = z.object({
     body: z.object({
@@ -13,11 +20,7 @@ const loginSchema = z.object({
     })
 });
 
-const refreshSchema = z.object({
-    body: z.object({
-        refreshToken: z.string({ required_error: "Refresh Token is required" })
-    })
-});
+// refreshSchema removed as refreshToken is now in cookies
 
 const createUserSchema = z.object({
     body: z.object({
@@ -28,8 +31,8 @@ const createUserSchema = z.object({
     })
 });
 
-router.post('/login', validate(loginSchema), login);
-router.post('/refresh-token', validate(refreshSchema), refreshToken);
+router.post('/login', loginLimiter, validate(loginSchema), login);
+router.post('/refresh-token', refreshToken);
 router.get('/profile', requireAuth, getProfile);
 router.post('/logout', requireAuth, logout);
 router.post('/create-user', requireAuth, requireAdmin, validate(createUserSchema), createUser);

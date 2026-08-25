@@ -16,7 +16,7 @@ export const loginUser = async (email, password) => {
     const refreshSecret = process.env.JWT_REFRESH_SECRET || 'refreshSecret123';
 
     const payload = { userId: user.id, role: user.role };
-    const accessToken = jwt.sign(payload, jwtSecret, { expiresIn: '15m' });
+    const accessToken = jwt.sign(payload, jwtSecret, { expiresIn: '10s' }); // TODO: revert to 15m after testing
     const refreshToken = jwt.sign(payload, refreshSecret, { expiresIn: '7d' });
 
     // 4. Store refresh token
@@ -41,7 +41,7 @@ export const refreshToken = async (token) => {
 
     // 3. Generate new Access Token (Do not change Refresh Token)
     const jwtSecret = process.env.JWT_SECRET || 'secret123';
-    const newAccessToken = jwt.sign({ userId: user.id, role: user.role }, jwtSecret, { expiresIn: '15m' });
+    const newAccessToken = jwt.sign({ userId: user.id, role: user.role }, jwtSecret, { expiresIn: '10s' }); // TODO: revert to 15m after testing
 
     return { accessToken: newAccessToken };
 };
