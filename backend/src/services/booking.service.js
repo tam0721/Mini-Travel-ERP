@@ -73,7 +73,8 @@ export const getAllBookings = async ({ status, keyword, page = 1, limit = 10, so
             total,
             page: pageNum,
             limit: limitNum,
-            totalPage: Math.ceil(total / limitNum)
+            totalPage: Math.ceil(total / limitNum),
+            totalPages: Math.ceil(total / limitNum)
         }
     };
 };

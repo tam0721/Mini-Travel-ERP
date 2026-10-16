@@ -1,4 +1,4 @@
-export default function StatusBadge({ status }) {
+export default function StatusBadge({ status, ...props }) {
   const map = {
     PENDING:   { cls: 'badge-pending',   label: 'Pending' },
     CONFIRMED: { cls: 'badge-confirmed', label: 'Confirmed' },
@@ -6,5 +6,5 @@ export default function StatusBadge({ status }) {
     CANCELLED: { cls: 'badge-cancelled', label: 'Cancelled' },
   }
   const { cls, label } = map[status] || { cls: '', label: status }
-  return <span className={`badge ${cls}`}>{label}</span>
+  return <span className={`badge ${cls}`} {...props}>{label}</span>
 }

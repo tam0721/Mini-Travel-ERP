@@ -8,8 +8,9 @@ import rateLimit from 'express-rate-limit';
 const router = express.Router();
 
 const loginLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 10, // Limit each IP to 10 login requests per `window` (here, per 15 minutes)
+    windowMs: 15 * 60 * 1000,
+    max: process.env.NODE_ENV === 'production' ? 10 : 1000,
+    skip: () => process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development',
     message: { status: 'error', message: 'Quá nhiều lần thử đăng nhập, vui lòng thử lại sau 15 phút' }
 });
 

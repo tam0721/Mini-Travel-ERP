@@ -56,6 +56,7 @@ export default function LoginPage() {
                         <div className="form-group">
                             <label className="form-label">Email</label>
                             <input
+                                data-cy="login-email"
                                 id="email"
                                 className="form-input"
                                 type="email"
@@ -71,6 +72,7 @@ export default function LoginPage() {
                         <div className="form-group">
                             <label className="form-label">Mật khẩu</label>
                             <input
+                                data-cy="login-password"
                                 id="password"
                                 className="form-input"
                                 type="password"
@@ -80,7 +82,7 @@ export default function LoginPage() {
                             {errors.password && <p className="form-error">{errors.password.message}</p>}
                         </div>
 
-                        <button id="login-submit" type="submit" className="btn btn-primary login-btn" disabled={loading}>
+                        <button data-cy="login-submit" id="login-submit" type="submit" className="btn btn-primary login-btn" disabled={loading}>
                             {loading ? <><span className="spinner" /> Login...</> : 'Login'}
                         </button>
                     </form>

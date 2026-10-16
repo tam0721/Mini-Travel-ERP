@@ -93,6 +93,7 @@ export default function BookingFormPage() {
               <div className="form-group">
                 <label className="form-label">Full Name <span style={{ color: 'var(--danger)' }}>*</span></label>
                 <input 
+                  data-cy="booking-customerName"
                   id="customerName" 
                   className="form-input" 
                   placeholder="Enter customer full name" 
@@ -104,6 +105,7 @@ export default function BookingFormPage() {
               <div className="form-group">
                 <label className="form-label">Phone <span style={{ color: 'var(--danger)' }}>*</span></label>
                 <input 
+                  data-cy="booking-customerPhone"
                   id="customerPhone" 
                   className="form-input" 
                   placeholder="Enter customer phone" 
@@ -116,6 +118,7 @@ export default function BookingFormPage() {
             <div className="form-group">
               <label className="form-label">Email <span style={{ color: 'var(--danger)' }}>*</span></label>
               <input 
+                data-cy="booking-customerEmail"
                 id="customerEmail" 
                 className="form-input" 
                 type="email" 
@@ -133,6 +136,7 @@ export default function BookingFormPage() {
             <div className="form-group">
               <label className="form-label">Tour Name <span style={{ color: 'var(--danger)' }}>*</span></label>
               <input 
+                data-cy="booking-tourName"
                 id="tourName" 
                 className="form-input" 
                 placeholder="Enter tour name" 
@@ -194,7 +198,7 @@ export default function BookingFormPage() {
               <button type="button" className="btn btn-ghost" onClick={() => navigate('/bookings')}>
                 Cancel
               </button>
-              <button id="submit-btn" type="submit" className="btn btn-primary" disabled={isSubmitting}>
+              <button data-cy="booking-submit" id="submit-btn" type="submit" className="btn btn-primary" disabled={isSubmitting}>
                 {isEdit ? '💾 Save changes' : '✅ Create booking'}
               </button>
             </div>

@@ -44,7 +44,7 @@ export default function BookingListPage() {
           title="Manage Booking" 
           subtitle={pagination.total != null ? `${pagination.total} booking` : '—'}
         >
-          <Link to="/bookings/new" className="btn btn-primary">+ Create booking</Link>
+          <Link to="/bookings/new" data-cy="booking-create" className="btn btn-primary">+ Create booking</Link>
         </Navbar>
 
         {/* Filter bar */}
@@ -89,7 +89,7 @@ export default function BookingListPage() {
         />
 
         {/* Pagination */}
-        <Pagination page={page} totalPages={pagination.totalPages} setPage={setPage} />
+        <Pagination page={page} totalPages={pagination.totalPages ?? pagination.totalPage} setPage={setPage} />
       </main>
 
       {statusModal && (

@@ -1,0 +1,5 @@
+{
+    "admin":    { "email": "admin@test.com",    "password": "Test@123" },
+    "sales":    { "email": "sales@test.com",    "password": "Test@123" },
+    "operator": { "email": "operator@test.com", "password": "Test@123" }
+}

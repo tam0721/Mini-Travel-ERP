@@ -36,7 +36,7 @@ export default function BookingTable({ bookings, isLoading, setStatusModal, setD
               </thead>
               <tbody>
                 {bookings.map((b) => (
-                  <tr key={b.id}>
+                  <tr key={b.id} data-cy="booking-row">
                     <td style={{ color: 'var(--text-light)', fontSize: 12 }}>#{b.id}</td>
                     <td>
                       <div className="td-name">{b.customerName}</div>
@@ -45,13 +45,13 @@ export default function BookingTable({ bookings, isLoading, setStatusModal, setD
                     <td><div style={{ fontWeight: 500, color: 'var(--text-heading)' }}>{b.tourName}</div></td>
                     <td style={{ whiteSpace: 'nowrap', fontSize: 13 }}>{dayjs(b.travelDate).format('DD/MM/YYYY')}</td>
                     <td style={{ fontWeight: 600, color: 'var(--text-heading)', whiteSpace: 'nowrap' }}>{fmt(b.totalPrice)}</td>
-                    <td><StatusBadge status={b.status} /></td>
+                    <td><StatusBadge status={b.status} data-cy="booking-status" /></td>
                     <td style={{ fontSize: 13 }}>{b.user?.name ?? '—'}</td>
                     <td>
                       <div className="action-group" style={{ justifyContent: 'flex-end' }}>
                         <button id={`edit-btn-${b.id}`} className="btn btn-ghost btn-sm btn-icon" title="Edit" onClick={() => navigate(`/bookings/${b.id}/edit`)}>✏️</button>
-                        <button id={`status-btn-${b.id}`} className="btn btn-ghost btn-sm btn-icon" title="Change Status" onClick={() => setStatusModal(b)}>🔄</button>
-                        <button id={`delete-btn-${b.id}`} className="btn btn-danger btn-sm btn-icon" title="Delete" onClick={() => setDeleteModal(b)}>🗑</button>
+                        <button data-cy="booking-status-btn" id={`status-btn-${b.id}`} className="btn btn-ghost btn-sm btn-icon" title="Change Status" onClick={() => setStatusModal(b)}>🔄</button>
+                        <button data-cy="booking-delete-btn" id={`delete-btn-${b.id}`} className="btn btn-danger btn-sm btn-icon" title="Delete" onClick={() => setDeleteModal(b)}>🗑</button>
                       </div>
                     </td>
                   </tr>
