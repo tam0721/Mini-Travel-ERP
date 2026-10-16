@@ -28,7 +28,7 @@ export default function Sidebar() {
   })
 
   const handleLogout = async () => {
-    try { await logout() } catch {}
+    try { await logout() } catch { /* logout failed, continue */ }
     localStorage.removeItem('accessToken')
     navigate('/login')
   }

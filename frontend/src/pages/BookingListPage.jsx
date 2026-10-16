@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { getAllBookings, deleteBooking, updateBookingStatus } from '../api/booking.api'
+import { getAllBookings } from '../api/booking.api'
 import { StatusModal, DeleteModal } from '../components/BookingModal'
 import BookingTable from '../components/BookingTable'
 import Pagination from '../components/Pagination'
@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar'
 
 // ── Main Page ───────────────────────────────────────────────────
 export default function BookingListPage() {
-  const navigate = useNavigate()
+
 
   // Filter / pagination state
   const [keyword, setKeyword] = useState('')

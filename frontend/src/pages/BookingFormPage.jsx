@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
-import dayjs from 'dayjs'
+
 import Sidebar from '../components/Sidebar'
 import Navbar from '../components/Navbar'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -22,7 +21,7 @@ export default function BookingFormPage() {
     enabled: isEdit
   })
 
-  const { register, handleSubmit, reset, control, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     defaultValues: {
       customerName: '',
       customerEmail: '',
@@ -74,7 +73,7 @@ export default function BookingFormPage() {
           subtitle={isEdit ? `Booking #${id}` : 'Fill in customer and tour information'}
           leftSlot={
             <button className="btn btn-ghost btn-sm" onClick={() => navigate('/bookings')}>
-              ← Back (Test Frontend CI)
+              ← Back
             </button>
           }
         />
