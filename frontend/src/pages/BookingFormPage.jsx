@@ -74,7 +74,7 @@ export default function BookingFormPage() {
           subtitle={isEdit ? `Booking #${id}` : 'Fill in customer and tour information'}
           leftSlot={
             <button className="btn btn-ghost btn-sm" onClick={() => navigate('/bookings')}>
-              ← Back
+              ← Back (Test Frontend CI)
             </button>
           }
         />
