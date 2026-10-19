@@ -19,7 +19,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
     res.status(200).json({
         status: 'success',
         message: "Server is healthy and running!",
