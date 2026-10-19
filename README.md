@@ -1,3 +1,5 @@
+[![Frontend CI](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/frontend-ci.yml)
+
 [![E2E Tests](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/e2e.yml/badge.svg)](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/e2e.yml)
 
 # Mini-Travel-ERP
