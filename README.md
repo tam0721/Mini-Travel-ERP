@@ -1,3 +1,5 @@
+[![E2E Tests](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/e2e.yml/badge.svg)](https://github.com/tam0721/Mini-Travel-ERP/actions/workflows/e2e.yml)
+
 # Mini-Travel-ERP
 
 A full-stack internal Enterprise Resource Planning (ERP) system built for small-to-medium travel agencies. It covers the complete booking lifecycle — from creation by sales staff through confirmation and completion by admins — while providing real-time dashboard insights and a clean, role-based access model.
